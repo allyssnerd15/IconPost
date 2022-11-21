@@ -1,0 +1,81 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+
+<div class="container">
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Pagina Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            
+          <li class="nav-item">
+            <a class="nav-link" href="/">Todos Produtos</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              {% for prods in prod %}
+              <li><a class="dropdown-item" href="{{url_for('get_produto', id=produto_id}}">{{prods.name}}</a></li>
+              {% endfor %}
+
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Disabled</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="container">
+    <div class="row">
+      {% if prods %}
+      {% for p in prods %}
+        <div class="col-md-3">
+            <div class="card">
+                <img src="" alt="">
+                <div class="'card-body"> </div>
+                  <h4 class="text-center">{{p.name}}</h4>
+                  <p class="text-center">Preço R$ {{p.price}}</p>
+                <div class="card-footer"></div>
+                <a href="{{url_for('pagina_unica', id=prods.id)}}" class="float-left btn btn-sm btn-success"> Detalhes Produtos</a>
+                <a href="#" class="float-right btn btn-sm btn-warning"> Comprar</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+  </div>
+      {% else %}  
+      {% for produto in produtos %}
+        <div class="col-md-3">
+            <div class="card">
+                <img src="" alt="">
+                <div class="'card-body"> </div>
+                  <h4 class="text-center">{{produto.name}}</h4>
+                  <p class="text-center">Preço R$ {{produto.price}}</p>
+                <div class="card-footer"></div>
+                <a href="{{url_for('pagina_unica', id=produto.id)}}" class="float-left btn btn-sm btn-success"> Detalhes Produtos</a>
+                <a href="#" class="float-right btn btn-sm btn-warning"> Comprar</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% for page_num in prods.iter_pages() %}
+        {{page_num}}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

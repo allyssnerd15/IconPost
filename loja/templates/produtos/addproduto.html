@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-6">
+        <h2 class="text-center bg-success p-2 mt-2">Adicionar Produtos</h2>
+        {%  from "_formhelpers.html" import render_field %}
+        <form action="" method="POST" enctype="multipart/form-data">
+
+            {{ render_field(form.name, class="form-control", placeholder="Nome do produto") }}
+            {{ render_field(form.price, class="form-control", placeholder="Preço do produto") }}
+            {{ render_field(form.minimun, class="form-control", placeholder="Minino do produto") }}
+            {{ render_field(form.amount_per_package, class="form-control", placeholder="Quantidade Maxima") }}
+            {{ render_field(form.max_availability, class="form-control", placeholder="Maximo") }}
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">{{ render_field(form.image_1, class="form-control") }}</div>
+                    <div class="col-md-4">{{ render_field(form.image_2, class="form-control") }}</div>
+                    <div class="col-md-4">{{ render_field(form.image_3, class="form-control") }}</div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-info mt-4">Cadastrar</button>
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+
+
+</div>
+</div>
+
+{% endblock content %}
